@@ -1,4 +1,23 @@
 <template name="home">
   {{> menu}}
-  <p>student view</p>
+	<div class="ui page grid">
+    <div class="three wide column">
+
+    </div>
+    <div class="ten wide column">
+      {{#if hasSlips}}
+
+      {{else}}
+      <div class="createnewslip">
+        <center>
+          <i class="massive circular link plus icon"></i>
+          <p class="extra_newline">create new permission slip</p>
+        </center>
+      </div>
+      {{/if}}
+    </div>
+    <div class="three wide column">
+      
+    </div>
+  </div>
 </template>
