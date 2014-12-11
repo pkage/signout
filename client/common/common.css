@@ -20,3 +20,22 @@ body {
   margin-bottom: 0px;
   border: 0px;
 }
+
+/* menu control */
+
+.menu_extra {
+  font-size: .75em;
+  margin-left: 1em;
+}
+
+#login-sign-in-link {
+  text-transform: lowercase;
+  color: #fff;
+  text-decoration: none !important;
+}
+
+#login-name-link {
+  text-transform: lowercase;
+  color: #fff;
+  text-decoration: none !important;
+}

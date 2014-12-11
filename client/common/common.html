@@ -1,0 +1,17 @@
+<template name="menu">
+  <nav class="ui menu inverted navbar page grid" style="margin-bottom: 0px; margin-top: 0px; border-radius: 0px;">
+    <a class="brand item"><b>signout</b><i class="menu_extra">designed by kagelabs</i></a>
+    <div class="right menu">
+      <a class="item" id="buttons_container">
+        {{> loginButtons align="right"}}
+        {{#if currentUser}}
+
+        {{else}}
+          <span class="menu_extra">
+            {{role}}
+          </span>
+        {{/if}}
+      </a>
+    </div>
+  </nav>
+</template>
