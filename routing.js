@@ -3,12 +3,22 @@ Router.map(function() {
     path: '/'
   });
   this.route('home', {
-    path: '/student'
+    path: '/student',
+    waitOn: function() {
+      return Meteor.subscribe('slips');
+    },
+    data: function() {
+      return '';
+    }
   });
   this.route('admin', {
     path: '/dean'
   });
-  this.route('fourohfour', {
+  this.route('loading', {
     path: '*'
   })
+});
+
+Router.configure({
+  loadingTemplate: 'loading'
 });
