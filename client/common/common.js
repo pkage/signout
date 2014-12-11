@@ -7,3 +7,7 @@ Template.menu.helpers = {
     return 'student';
   }
 }
+
+Meteor.startup(function() {
+  Meteor.subscribe('roles');
+})
