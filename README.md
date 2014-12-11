@@ -2,6 +2,7 @@
 > semantic ui beta
 >
 > let's fucking do it
+>
 > \- Patrick
 >> As fellow students at Choate Rosemary Hall, it is our duty to think about how we can benefit this community. I think we should put our talents to work.
 >> I came up with an idea, its actually an old idea that I didn’t have the time to see it through.
