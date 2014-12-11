@@ -14,6 +14,10 @@ Meteor.publish('slips', function() {
   }
 });
 
+Meteor.publish('roles', function() {
+  return Roles.find({});
+});
+
 Meteor.startup(function() {
    process.env.MAIL_URL = 'smtp://postmaster%40kagelabs.org:59aa132fae6a802044629ab58b8dce3b@smtp.mailgun.org:587';
 
