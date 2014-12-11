@@ -7,7 +7,7 @@ var getRole = function(id) {
 }
 
 Meteor.publish('slips', function() {
-  if (getRole(this.userId == "dean") {
+  if (getRole(this.userId == "dean")) {
     return Slips.find();
   } else {
     return Slips.find({student: this.userId});
