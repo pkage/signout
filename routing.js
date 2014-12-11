@@ -6,9 +6,6 @@ Router.map(function() {
     path: '/student',
     waitOn: function() {
       return Meteor.subscribe('slips');
-    },
-    data: function() {
-      return '';
     }
   });
   this.route('admin', {
