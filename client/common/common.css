@@ -1,0 +1,18 @@
+.fullscreen {
+  height: 100vh;
+  width: 100vw;
+  margin: 0px;
+  border: 0px;
+}
+
+.fullheight {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 100vh;
+}
+
+.fullwidth {
+  margin-right: 0px;
+  margin-left: 0px;
+  width: 100vw;
+}
