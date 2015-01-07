@@ -54,11 +54,11 @@
           </div>
           <div class="modal-body">
             <a class="btn btn-primary clickable">Add an advisor</a>
-            <a class="btn btn-danger clickable">Remove dorm from database</a>
-            <div class="alert alert-dismissable alert-warning">
-              <button type="button" class="close" data-dismiss="alert">×</button>
-              <h4>Warning!</h4>
-              <p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, <a href="javascript:void(0)" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
+            <a class="btn btn-warning clickable" id="opendormremovalwarning">Remove dorm from database</a>
+            <div class="alert alert-dismissable alert-warning" id="dormremovalwarning">
+              <button type="button" class="close" id="close_alert">×</button>
+              <h4>Warning! Possible app-breaking actions within!</h4>
+              <p>This is a really dangerous thing to do. Any slips attributed to this dorm <em>will be lost forever!</em> If you're still positive you know what you're doing, <a class="alert-link clickable">click here</a>. Otherwise, please <a class="alert-link clickable" id="close_alert">close this dialog</a>.</p>
             </div>
           </div>
           <div class="modal-footer">

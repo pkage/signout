@@ -29,11 +29,18 @@ Template.na_dorms.events({
         toastr.warning("You need to give the dorm a name!", "You can't do that!");
         return;
       }
-      toastr.error(err.reason, err.error);
+      toastr.error(err.reason, err.error); // something else happened
     });
   },
   'click #opendormsettings': function() {
     Session.set("dormsettings_selected", this);
+    $('#dormremovalwarning').hide();
     $('#dormsettingsmodal').modal();
+  },
+  'click #opendormremovalwarning': function() {
+    $('#dormremovalwarning').fadeIn();
+  },
+  'click #close_alert': function() {
+    $('#dormremovalwarning').fadeOut();
   }
 });
