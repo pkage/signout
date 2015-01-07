@@ -42,5 +42,18 @@ Template.na_dorms.events({
   },
   'click #close_alert': function() {
     $('#dormremovalwarning').fadeOut();
+  },
+  'click #removedorm': function() {
+    Meteor.call('removeDorm', this._id, function(err) {
+      if (err == undefined) {
+        $('.close').click();
+        return;
+      }
+      if (err.error == "unauthorized") {
+        toastr.error("You don't have permission to do this!", 'An error occured!');
+        return;
+      }
+      toastr.error(err.reason, err.error); // something else happened
+    });
   }
 });

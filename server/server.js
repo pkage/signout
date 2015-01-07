@@ -22,6 +22,12 @@ Meteor.methods({
       name: dormName,
       advisors: []
     });
+  },
+  'removeDorm': function(dorm_id) {
+    if (!getPermissions(Meteor.userId()).admin) {
+      throw new Meteor.Error('unauthorized', 'The user doesn\'t have permission to do this.');
+    }
+    Dorms.remove({_id: dorm_id});
   }
 });
 
