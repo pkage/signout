@@ -1,0 +1,16 @@
+<head>
+  <title>signout</title>
+  <link rel="icon" type="image/ico" href="/favicon.ico">
+</head>
+
+<template name="slip">
+
+</template>
+
+<template name="loginnav">
+  {{#if currentUser}}
+    <li><a class="clickable">logged in as {{user_email}}</a></li>
+  {{else}}
+    <li><a class="clickable">not logged in</a></li>
+  {{/if}}
+</template>

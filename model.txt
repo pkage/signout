@@ -1,0 +1,37 @@
+dorm:
+{
+  _id: 'id',
+  name: 'imaginary dorm',
+  advisors: ['id']
+}
+
+role:
+{
+  _id: 'id',
+  name: 'Patrick Kage',
+  email: 'pkage16@choate.edu',
+  affects: 'userid',
+  permissions: {
+    admin: true,
+    dean: false,
+    grant: false,
+    house: true
+  }
+}
+
+slip:
+{
+  _id: 'id',
+  name: 'Joe Schmoe',
+  leave: ISODate(),
+  return: ISODate(),
+  address1: '',
+  address2: '',
+  town: '',
+  zip: '',
+  dorm: 'dormid',
+  signatures: {
+    dean: 'user_id',
+    house: 'user_id'
+  }
+}

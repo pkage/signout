@@ -1,0 +1,35 @@
+<template name="login">
+  <div class="center-outer">
+    <div class="center-middle">
+    temporary sign in: {{> loginButtons}}
+      <div class="center-inner">
+        <div class="container">
+          <div class="panel panel-info">
+            <div class="panel-heading"><h2>SIGN IN</h2></div>
+            <div class="panel-body">
+              <form class="form-horizontal login-form">
+                <div class="form-group">
+                  <label for="login-email" class="col-lg-2 control-label">Email</label>
+                  <div class="col-lg-10">
+                    <input class="form-control" id="login-email" placeholder="email" type="email"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="login-email" class="col-lg-2 control-label">Password</label>
+                  <div class="col-lg-10">
+                    <input class="form-control" id="login-password" placeholder="password" type="password"/>
+                  </div>
+                </div>
+
+              </form>
+              <a class="btn btn-primary btn-raised btn-lg clickable pull-right" id="login">sign in</a>
+              <a class="btn btn-flat btn-default btn-lg pull-right right-margin-1em">need help?</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="bottomsignature text-muted">a patrick kage production. &copy; 2015 kagelabs.</p>
+  </div>
+</template>

@@ -1,0 +1,23 @@
+<template name="nf_dorms">
+  {{#if has_dorms}}
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+          <h3 class="panel-title">Don't see your dorm here?</h3>
+      </div>
+      <div class="panel-body">
+          Join a dorm <a class="clickable" id="joinadorm">here</a> and review your dorm's signout slips instantly.
+      </div>
+    </div>
+
+  {{else}}
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+          <h3 class="panel-title">No dorms to show here.</h3>
+      </div>
+      <div class="panel-body">
+          Join a dorm <a class="clickable" id="joinadorm">here</a> and review your dorm's signout slips instantly.
+      </div>
+    </div>
+  {{/if}}
+
+</template>
