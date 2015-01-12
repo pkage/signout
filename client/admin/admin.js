@@ -1,5 +1,6 @@
 Template.adminnav.rendered = function() {
   Session.set('na_selected', 'dorms');
+  $.material.init();
 }
 
 Template.adminnav.events({
@@ -19,6 +20,18 @@ Template.adminnav.helpers({
     return (Session.get('na_selected') == 'roles');
   }
 });
+
+Template.admin.rendered = function() {
+  if (Meteor.userId() == null) {Router.go('login');}
+  Meteor.call('getPermissions', function(err,ret) {
+    if (err != undefined) {
+      return;
+    }
+    if (!ret.admin) {
+      Router.go('loading');
+    }
+  });
+}
 
 
 Template.admin.helpers({

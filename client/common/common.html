@@ -1,5 +1,7 @@
 <head>
   <title>signout</title>
+  <meta name="theme-color" content="#03a9f4">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/ico" href="/favicon.ico">
 </head>
 
@@ -9,8 +11,18 @@
 
 <template name="loginnav">
   {{#if currentUser}}
-    <li><a class="clickable">logged in as {{user_email}}</a></li>
+    <li class="dropdown">
+      <a class="dropdown-toggle clickable" data-toggle="dropdown">logged in as {{user_email}} <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a class="clickable" id="logout">log out</a></li>
+        {{#if has_options}}
+          <li class="divider"></li>
+          <li><a href="{{ pathFor 'admin'}}">Admin interface</a></li>
+          <li><a href="{{ pathFor 'faculty'}}">Faculty interface</a></li>
+        {{/if}}
+      </ul>
+    </li>
   {{else}}
-    <li><a class="clickable">not logged in</a></li>
+    <li><a href="{{pathFor 'login'}}">not logged in</a></li>
   {{/if}}
 </template>

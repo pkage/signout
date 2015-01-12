@@ -1,5 +1,6 @@
 Template.navigationfaculty.rendered = function() {
   Session.set('nf_selected', 'overview');
+  $.material.init();
 }
 
 Template.navigationfaculty.events({
@@ -19,6 +20,18 @@ Template.navigationfaculty.helpers({
   'nf_dorms_active': function() {return ((Session.get('nf_selected') == 'dorms') ? 'active' : '' );},
   'nf_deansoffice_active': function() {return ((Session.get('nf_selected') == 'deansoffice') ? 'active' : '' );},
 });
+
+Template.faculty.rendered = function() {
+  if (Meteor.userId() == null) {Router.go('login');}
+  Meteor.call('getPermissions', function(err,ret) {
+    if (err != undefined) {
+      return;
+    }
+    if (!(ret.house || ret.grant || ret.dean)) {
+      Router.go('loading');
+    }
+  });
+}
 
 Template.faculty.helpers({
   'nf_overview_v': function() {

@@ -1,3 +1,7 @@
+Template.login.rendered = function() {
+  $.material.init();
+}
+
 Template.login.events({
   'click #login, keydown input': function(ev,tm) {
     //ev.preventDefault();
@@ -17,7 +21,7 @@ Template.login.events({
     }
     Meteor.call('checkRepeatedEmail', em, function(err, ret) {
       if (!ret) {
-        toastr.error('that doesn\' appear to be a registered email');
+        toastr.error('that doesn\'t appear to be a registered email');
       }
       console.log(em + pw);
     });

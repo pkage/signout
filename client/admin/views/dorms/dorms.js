@@ -1,3 +1,7 @@
+Template.na_dorms.rendered = function() {
+  $.material.init();
+}
+
 Template.na_dorms.helpers({
   'dorm': function() {
     return Dorms.find({});

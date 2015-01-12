@@ -31,7 +31,15 @@ slip:
   zip: '',
   dorm: 'dormid',
   signatures: {
-    dean: 'user_id',
-    house: 'user_id'
+    dean: {
+      id: 'userid',
+      ready: false,
+      signed: false
+    },
+    house: {
+      id: 'userid',
+      ready: false,
+      signed: false
+    }
   }
 }
