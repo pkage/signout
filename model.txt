@@ -34,15 +34,14 @@ slip:
   email: '',
   transport: '',
   form: 3,
+  ready: false,
   signatures: {
     dean: {
       email: 'email',
-      ready: false,
       signed: false
     },
     house: {
       email: 'email',
-      ready: false,
       signed: false
     }
   }

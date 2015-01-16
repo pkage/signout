@@ -45,28 +45,7 @@ Template.slip.helpers({
     return Slips.findOne({});
   },
   'fill_form_with_context': function() {
-    console.log('filling form with context');
-    var cxt = this;
-    Meteor.setTimeout(function () {
-      console.log(cxt);
-      $('.datepicker').pickadate();$('.timepicker').pickatime();
-      var form = $('#' + cxt._id);
-      form.find('#slip_name').val(cxt.name);
-      form.find('#slip_email').val(cxt.email);
-      form.find('input:radio[name="formRadio"]').val([cxt.form]);
-      form.find('#dormselect').val(cxt.dorm);
-      form.find('#leavedate').pickadate('picker').set('select', cxt.leave);
-      form.find('#leavetime').pickatime('picker').set('select', cxt.leave);
-      form.find('#returndate').pickadate('picker').set('select', cxt.return);
-      form.find('#returntime').pickatime('picker').set('select', cxt.return);
-      form.find('#slip_addr1').val(cxt.address1);
-      form.find('#slip_addr2').val(cxt.address2);
-      form.find('#slip_state').val(cxt.state);
-      form.find('#slip_zip').val(cxt.zip);
-      form.find('#slip_transport').val(cxt.transport);
-      form.find('#slip_tel').val(cxt.tel);
-      $.material.init();
-    }, 200);
+    contextfill(this);
   },
   'finished_class': function() {
     if (this.signatures.dean.signed && this.signatures.house.signed) {
@@ -92,15 +71,16 @@ Template.slip.events({
       name: this.name,
       email: this.email,
       dorm: form.find('#dormselect').val(),
-      leave: new Date(form.find('#leavedate').pickadate('picker').get()), // todo: compose time object
-      return: new Date(form.find('#returndate').pickadate('picker').get('value')),
+      leave: new Date(form.find('#leavedate').pickadate('picker').get() + ' ' + form.find("#leavetime").pickatime('picker').get()),
+      return: new Date(form.find('#returndate').pickadate('picker').get() + ' ' + form.find("#returntime").pickatime('picker').get()),
       form: parseInt(form.find('input:radio[name="formRadio"]:checked').val()),
       address1: form.find('#slip_addr1').val(),
       address2: form.find('#slip_addr2').val(),
       state: form.find('#slip_state').val(),
       transport: form.find('#slip_transport').val(),
       zip: form.find('#slip_zip').val(),
-      tel: form.find('#slip_tel').val()
+      tel: form.find('#slip_tel').val(),
+      ready: form.find('#slip_ready').is(':checked')
     }
     Meteor.call('updateSlip', obj, function(err) {
       if (err == undefined) {
@@ -108,5 +88,38 @@ Template.slip.events({
       }
       toastr.error(err.reason, err.error);
     });
+  },
+  'click #revert': function() {
+    contextfill(this);
+  },
+  'click #deleteslip': function() {
+    Meteor.call('removeSlip', this._id, function(err,ret) {
+
+    });
   }
 });
+
+var contextfill = function(cxt) {
+  //console.log('filling form with context');
+  Meteor.setTimeout(function () {
+    //console.log(cxt);
+    $('.datepicker').pickadate();$('.timepicker').pickatime();
+    var form = $('#' + cxt._id);
+    form.find('#slip_name').val(cxt.name);
+    form.find('#slip_email').val(cxt.email);
+    form.find('input:radio[name="formRadio"]').val([cxt.form]);
+    form.find('#dormselect').val(cxt.dorm);
+    form.find('#leavedate').pickadate('picker').set('select', cxt.leave);
+    form.find('#leavetime').pickatime('picker').set('select', cxt.leave);
+    form.find('#returndate').pickadate('picker').set('select', cxt.return);
+    form.find('#returntime').pickatime('picker').set('select', cxt.return);
+    form.find('#slip_addr1').val(cxt.address1);
+    form.find('#slip_addr2').val(cxt.address2);
+    form.find('#slip_state').val(cxt.state);
+    form.find('#slip_zip').val(cxt.zip);
+    form.find('#slip_transport').val(cxt.transport);
+    form.find('#slip_tel').val(cxt.tel);
+    form.find('#slip_ready').prop('checked', cxt.ready);
+    $.material.init();
+  }, 200);
+}

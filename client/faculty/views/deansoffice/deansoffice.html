@@ -1,3 +1,31 @@
 <template name="nf_deansoffice">
-  <p>deans office</p>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Grant a slip</h3>
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" id="newslip">
+        <fieldset>
+          <div class="form-group">
+            <label for="gs_name" class="col-lg-2 control-label">Name</label>
+            <div class="col-lg-10">
+              <input class="form-control" id="gs_name" placeholder="student's name" type="text" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="gs_email" class="col-lg-2 control-label">Email</label>
+            <div class="col-lg-10">
+              <input class="form-control" id="gs_email" placeholder="student's email" type="email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="submit" class="btn btn-primary pull-right">Submit</button>
+              <button class="btn btn-default pull-right text-normal ">Cancel</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
 </template>

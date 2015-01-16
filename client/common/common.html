@@ -119,9 +119,24 @@
               </div>
             </div>
 
-            <div class="form-group pull-right" style="margin-right: 2em;">
-                  <button class="btn btn-default text-normal">Cancel</button>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="row">
+              <div class="col-lg-2"></div>
+              <div class="col-lg-4">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="slip_ready"> Ready for review by house advisors and deans
+                  </label>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group pull-right" style="margin-right: 2em;">
+                  <div class="checkbox">
+                    <button class="btn btn-default text-normal" id="revert">Revert</button>
+                    <button class="btn btn-danger" id="deleteslip">Delete</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </fieldset>

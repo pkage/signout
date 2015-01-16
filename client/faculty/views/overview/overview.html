@@ -1,3 +1,17 @@
 <template name="nf_overview">
-  {{> slip expanded="true" context=this}}
+  {{#if has_slips}}
+    {{#each slips}}
+      {{> slip context=this}}
+    {{/each}}
+  {{else}}
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">No slips to show here</h3>
+    </div>
+    <div class="panel-body">
+      nobody has signed out.
+    </div>
+  </div>
+  {{/if}}
 </template>

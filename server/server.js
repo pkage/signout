@@ -123,6 +123,7 @@ Meteor.methods({
     if (obj == undefined) {
       throw new Meteor.Error('invalidargument', "Your argument is invalid.");
     }
+    obj.signatures = {dean: {email: '', signed: 'false'}, house: {email: '', signed: 'false'}}
     Slips.insert(obj);
   },
   'updateSlip': function(obj) { // TODO: Fix permissions
@@ -130,7 +131,10 @@ Meteor.methods({
       throw new Meteor.Error('invalidargument', "Your argument is invalid.");
     }
     var id = obj._id; delete obj['_id'];
-    Slips.update({_id: id}, obj);
+    Slips.update({_id: id}, {$set: obj});
+  },
+  'removeSlip': function(sid) {
+    Slips.remove({_id: sid});
   }
 });
 
