@@ -8,8 +8,9 @@ meteor-platform
 autopublish
 insecure
 iron:router
-fezvrasta:bootstrap-material-design
 accounts-password
 pcel:toastr
 accounts-ui
 sacha:spin
+fezvrasta:bootstrap-material-design
+cwohlman:pickadate

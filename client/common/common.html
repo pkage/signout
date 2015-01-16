@@ -6,7 +6,130 @@
 </head>
 
 <template name="slip">
+  {{#with context}}
+    <div class="panel {{finished_class}} signoutslip" id="{{_id}}">
+      <div class="panel-heading">{{name}}'s permission slip<i class="mdi-navigation-expand-less pull-right expando clickable"></i><i class="mdi-navigation-expand-more pull-right expando clickable"></i></div>
+      <div class="panel-body">
+        <form class="form-horizontal" id="slip">
+          <fieldset>
+            <div class="form-group">
+              <label for="slip_name" class="col-lg-2 control-label">Full name</label>
+              <div class="col-lg-10">
+                <input class="form-control" id="slip_name" placeholder="name" type="text" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="slip_email" class="col-lg-2 control-label">Email</label>
+              <div class="col-lg-10">
+                <input class="form-control" id="slip_email" placeholder="email" type="email" readonly>
+              </div>
+            </div>
 
+            <div class="form-group">
+              <label class="col-lg-2 control-label">Form</label>
+              <div class="col-lg-10">
+                <div class="row" style="margin-left: 1em;">
+                  <div class="radio radio-primary">
+                    <label class="col-md-3">
+                      <input name="formRadio" id="form_radiobutton" value="3" checked="" type="radio">
+                      3<sup>rd</sup>
+                    </label>
+                    <label class="col-md-3">
+                      <input name="formRadio" id="form_radiobutton" value="4" type="radio">
+                      4<sup>th</sup>
+                    </label>
+                    <label class="col-md-3">
+                      <input name="formRadio" id="form_radiobutton" value="5" type="radio">
+                      5<sup>th</sup>
+                    </label>
+                    <label class="col-md-3">
+                      <input name="formRadio" id="form_radiobutton" value="6" type="radio">
+                      6<sup>th</sup>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="formselect" class="col-lg-2 control-label">Dorm</label>
+              <div class="col-lg-10">
+                <select class="form-control" id="dormselect" required>
+                  <option selected disabled hidden>pick a dorm</option>
+                  {{#each dorms}}
+                    <option value='{{_id}}'>{{name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="leavedate" class="col-lg-2 control-label">Leave date</label>
+                <div class="col-lg-5">
+                  <input class="form-control datepicker clickable-ovr" id="leavedate"  placeholder="date" type="text" required>
+                </div>
+                <div class="col-lg-5">
+                  <input class="form-control timepicker clickable-ovr" id="leavetime"  placeholder="time" type="text" required>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="returndate" class="col-lg-2 control-label">Return date</label>
+              <div class="col-lg-5">
+                <input class="form-control datepicker clickable-ovr" id="returndate"  placeholder="date" type="text" required>
+              </div>
+              <div class="col-lg-5">
+                <input class="form-control timepicker clickable-ovr" id="returntime"  placeholder="time" type="text" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="slip_addr1" class="col-lg-2 control-label">Address (line 1)</label>
+              <div class="col-lg-10">
+                <input class="form-control" id="slip_addr1" placeholder="address line 1" type="text" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="slip_addr2" class="col-lg-2 control-label">Address (line 2)</label>
+              <div class="col-lg-10">
+                <input class="form-control" id="slip_addr2" placeholder="address line 2" type="text">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="slip_state" class="col-lg-2 control-label">State / zip code</label>
+              <div class="col-lg-6">
+                <input class="form-control" id="slip_state" placeholder="state" required>
+              </div>
+              <div class="col-lg-4">
+                <input class="form-control" id="slip_zip" placeholder="zip code" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="slip_transport" class="col-lg-2 control-label">Transport</label>
+              <div class="col-lg-10">
+                <input class="form-control" id="slip_transport" placeholder="transportation method" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="slip_tel" class="col-lg-2 control-label">Telephone</label>
+              <div class="col-lg-10">
+                <input class="form-control" id="slip_tel" placeholder="tel. number" required>
+              </div>
+            </div>
+
+            <div class="form-group pull-right" style="margin-right: 2em;">
+                  <button class="btn btn-default text-normal">Cancel</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    {{fill_form_with_context}}
+  {{/with}}
 </template>
 
 <template name="loginnav">

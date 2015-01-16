@@ -1,3 +1,58 @@
 <template name="nf_joinadorm">
-  <p>join a dorm</p>
+  <div class="panel panel-info ">
+    <div class="panel-heading">
+      <h3 class="panel-title">My dorms</h3>
+    </div>
+    <div class="panel-body">
+      {{#if has_dorms}}
+      <table class="table table-striped table-hover ">
+        <thead>
+          <tr>
+            <th>Dorm name</th>
+            <th>Advisors</th>
+            <th>Subscribe</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each mydorms}}
+            <tr>
+              <td>{{name}}</td>
+              <td>{{advisorcount}}</td>
+              <td><a class="clickable" id="unsubscribe">leave this dorm</a></td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      {{else}}
+        <p>Join a dorm below to view it's slips.</p>
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="panel panel-info shadow-z-3">
+    <div class="panel-heading">
+      <h3 class="panel-title">All dorms</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-hover ">
+        <thead>
+          <tr>
+            <th>Dorm name</th>
+            <th>Advisors</th>
+            <th>Subscribe</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each alldorms}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{advisorcount}}</td>
+            <td><a class="clickable" id="subscribe">join this dorm</a></td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </template>

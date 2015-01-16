@@ -1,3 +1,11 @@
 .clickable {
   cursor: pointer;
 }
+
+.clickable-ovr {
+  cursor: pointer !important;
+}
+
+.expando {
+  font-size: 2em;
+}

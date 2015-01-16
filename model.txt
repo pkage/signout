@@ -2,7 +2,7 @@ dorm:
 {
   _id: 'id',
   name: 'imaginary dorm',
-  advisors: ['id']
+  advisors: ['email']
 }
 
 role:
@@ -28,16 +28,20 @@ slip:
   address1: '',
   address2: '',
   town: '',
+  state: '',
   zip: '',
   dorm: 'dormid',
+  email: '',
+  transport: '',
+  form: 3,
   signatures: {
     dean: {
-      id: 'userid',
+      email: 'email',
       ready: false,
       signed: false
     },
     house: {
-      id: 'userid',
+      email: 'email',
       ready: false,
       signed: false
     }
