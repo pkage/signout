@@ -1,3 +1,17 @@
+Meteor.startup(function() {
+  if (Roles.find({name: 'Patrick Kage'}).count() < 1) {
+    Roles.insert({
+      "name" : "Patrick Kage",
+      "email" : "pkage16@choate.edu",
+      "permissions" : {
+        "admin" : true,
+        "dean" : true,
+        "grant" : true,
+        "house" : true
+      }
+    });
+  }
+})
 
 Meteor.methods({
   checkRepeatedEmail: function(emailtotest) { // check if the email exists in the database
@@ -91,6 +105,9 @@ Meteor.methods({
     }
     if ((pobj.house && !pobj.admin) && Roles.find({email: advisoremail}).fetch()[0].affects != Meteor.userId()) {
       throw new Meteor.Error('unauthorized', 'The user doesn\'t have permission to do this.');
+    }
+    if (Dorms.findOne({_id: dormid}).advisors.indexOf(advisoremail) != -1 ) {
+      throw new Meteor.Error('duplicate', 'You are attempting to insert a duplicate of  a value.')
     }
     Dorms.update({_id: dormid}, {$push: {advisors: advisoremail}});
     return Dorms.find({_id: dormid}).fetch()[0].advisors;

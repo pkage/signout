@@ -44,6 +44,10 @@ Template.nf_joinadorm.events({
       if (err == undefined) {
         return;
       }
+      if (err.error = 'duplicate') {
+        toastr.warning("You're already subscribed to this dorm's slips!");
+        return;
+      }
       toastr.error(err.reason, err.error);
       return;
     });
