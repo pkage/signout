@@ -4,7 +4,7 @@ Template.na_dorms.rendered = function() {
 
 Template.na_dorms.helpers({
   'dorm': function() {
-    return Dorms.find({});
+    return Dorms.find({}, {sort: {name: 1}});
   },
   'count': function() {
     return Slips.find({dorm: this._id}).count();

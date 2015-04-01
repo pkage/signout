@@ -1,5 +1,21 @@
 <template name="nf_dorms">
   {{#if has_dorms}}
+    {{#each dorms_list}}
+      <div class="section_header">
+        <h2>{{name}}</h2>
+      </div>
+      <br>
+      {{#if has_relevant_slips}}
+        {{#each relevant_slips}}
+          {{> slip context=this expanded=false}}
+        {{/each}}
+      {{else}}
+        <i>no slips to show here</i>
+      {{/if}}
+    {{/each}}
+
+    <br><br><br>
+
     <div class="panel panel-warning">
       <div class="panel-heading">
           <h3 class="panel-title">Don't see your dorm here?</h3>

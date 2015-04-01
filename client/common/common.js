@@ -1,5 +1,6 @@
 Meteor.startup(function() {
   toastr.options.positionClass = "toast-bottom-left";
+  toastr.options.progressBar = true;
 });
 
 Template.registerHelper('user_email', function() {
@@ -34,10 +35,19 @@ Template.loginnav.events({
 
 Template.slip.rendered = function() {
   $.material.init();
+  var expid = null;
+  if (this.data.expanded == false) {
+    expid = this.data.context._id;
+    $('#' + expid).find('.panel-body').hide();
+  }
   $('.datepicker').pickadate();$('.timepicker').pickatime();
   Meteor.setTimeout(function() {
     $.material.init();$('.datepicker').pickadate();$('.timepicker').pickatime();
+    if (expid != null) {
+
+    }
   }, 300);
+
 }
 
 Template.slip.helpers({
@@ -47,15 +57,26 @@ Template.slip.helpers({
   'fill_form_with_context': function() {
     contextfill(this);
   },
-  'finished_class': function() {
-    if (this.signatures.dean.signed && this.signatures.house.signed) {
-      return "panel-success";
-    }
-    return "panel-info";
-  },
   'dorms': function() {
     return Dorms.find({}, {sort: {name: 1}});
   },
+  'slipfinished': function() {
+    return (this.signatures.dean.signed && this.signatures.house.signed);
+  },
+  'dates': function() {
+
+    var d1 = this.leave;
+    var d2 = this.return;
+
+    if (d1 == undefined || d2 == undefined) {
+      return "";
+    }
+
+    return "(" + (d1.getMonth() + 1) + "/" + d1.getDate() + " - " + (d2.getMonth() + 1) + '/' + d2.getDate() + ")";
+  },
+  'cansign': function() {
+    return (Roles.find({affects: Meteor.userId()}).count() > 0);
+  }
 });
 
 Template.slip.events({
@@ -80,7 +101,8 @@ Template.slip.events({
       transport: form.find('#slip_transport').val(),
       zip: form.find('#slip_zip').val(),
       tel: form.find('#slip_tel').val(),
-      ready: form.find('#slip_ready').is(':checked')
+      ready: form.find('#slip_ready').is(':checked'),
+      town: form.find('#slip_town').val()
     }
     Meteor.call('updateSlip', obj, function(err) {
       if (err == undefined) {
@@ -95,6 +117,28 @@ Template.slip.events({
   'click #deleteslip': function() {
     Meteor.call('removeSlip', this._id, function(err,ret) {
 
+    });
+  },
+  'click #signasdean': function() {
+    Meteor.call('changedean_sig', {id: this._id, state: !this.signatures.dean.signed}, function(err, ret) {
+      if (err == undefined) {
+        return;
+      }
+
+      console.log(err);
+
+      toastr.error(err.reason, err.error);
+    });
+  },
+  'click #signashouse': function() {
+    Meteor.call('changehouse_sig', {id: this._id, state: !this.signatures.house.signed}, function(err, ret) {
+      if (err == undefined) {
+        return;
+      }
+
+      console.log(err);
+
+      toastr.error(err.reason, err.error);
     });
   }
 });
@@ -120,6 +164,11 @@ var contextfill = function(cxt) {
     form.find('#slip_transport').val(cxt.transport);
     form.find('#slip_tel').val(cxt.tel);
     form.find('#slip_ready').prop('checked', cxt.ready);
+    form.find('#slip_town').val(cxt.town);
+    form.find('#housesig').text( ((cxt.signatures.house.signed) ? 'signed by house advisor ' + cxt.signatures.house.email : 'not signed by house advisor'));
+    form.find('#deansig').text( ((cxt.signatures.dean.signed) ? 'signed by dean ' + cxt.signatures.dean.email : 'not signed by dean'));
+    form.find('#signasdean').text( ((!cxt.signatures.dean.signed) ? 'sign as dean' : 'revoke dean signature') );
+    form.find('#signashouse').text( ((!cxt.signatures.house.signed) ? 'sign as house advisor' : 'revoke house advisor signature') );
     $.material.init();
   }, 200);
 }

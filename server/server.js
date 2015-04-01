@@ -140,7 +140,7 @@ Meteor.methods({
     if (obj == undefined) {
       throw new Meteor.Error('invalidargument', "Your argument is invalid.");
     }
-    obj.signatures = {dean: {email: '', signed: 'false'}, house: {email: '', signed: 'false'}}
+    obj.signatures = {dean: {email: '', signed: false}, house: {email: '', signed: false}}
     Slips.insert(obj);
   },
   'updateSlip': function(obj) { // TODO: Fix permissions
@@ -152,6 +152,32 @@ Meteor.methods({
   },
   'removeSlip': function(sid) {
     Slips.remove({_id: sid});
+  },
+  'changedean_sig': function(obj) {
+    var pobj = getPermissions(Meteor.userId());
+    if (!pobj.dean) {
+      throw new Meteor.Error('unauthorized', 'The user doesn\'t have permission to do this.');
+    }
+    if (obj == undefined) {
+      throw new Meteor.Error('invalidargument', "Your argument is invalid.");
+    }
+
+
+    var set = {email: Meteor.user().emails[0].address, signed: obj.state};
+    Slips.update({_id: obj.id}, {$set: {'signatures.dean': set}});
+  },
+  'changehouse_sig': function(obj) {
+    var pobj = getPermissions(Meteor.userId());
+    if (!pobj.house) {
+      throw new Meteor.Error('unauthorized', 'The user doesn\'t have permission to do this.');
+    }
+    if (obj == undefined) {
+      throw new Meteor.Error('invalidargument', "Your argument is invalid.");
+    }
+
+
+    var set = {email: Meteor.user().emails[0].address, signed: obj.state};
+    Slips.update({_id: obj.id}, {$set: {'signatures.house': set}});
   }
 });
 

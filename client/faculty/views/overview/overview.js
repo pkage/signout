@@ -7,7 +7,7 @@ Template.nf_overview.helpers({
       dout.push({dorm: dorms[c]._id})
     }
     //console.log(dout);
-    return Slips.find({$or: dout});
+    return Slips.find({$or: dout, ready: {$ne: false}});
   },
   'has_slips': function() {
     var email = Roles.findOne({affects: Meteor.userId()}).email;

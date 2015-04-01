@@ -12,6 +12,9 @@ Template.navigationfaculty.events({
   },
   'click #nf_deansoffice_button': function() {
     Session.set('nf_selected', 'deansoffice');
+  },
+  'click #nf_export_button': function() {
+    Session.set('nf_selected', 'export');
   }
 });
 
@@ -19,6 +22,7 @@ Template.navigationfaculty.helpers({
   'nf_overview_active': function() {return ((Session.get('nf_selected') == 'overview') ? 'active' : '' );},
   'nf_dorms_active': function() {return ((Session.get('nf_selected') == 'dorms') ? 'active' : '' );},
   'nf_deansoffice_active': function() {return ((Session.get('nf_selected') == 'deansoffice') ? 'active' : '' );},
+  'nf_export_active': function() {return ((Session.get('nf_selected') == 'export') ? 'active' : '' );}
 });
 
 Template.faculty.rendered = function() {
@@ -45,5 +49,8 @@ Template.faculty.helpers({
   },
   'nf_joinadorm_v': function() {
     return (Session.get('nf_selected') == 'joinadorm');
+  },
+  'nf_export_v': function() {
+    return (Session.get('nf_selected') == 'export');
   }
 });

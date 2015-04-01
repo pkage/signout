@@ -7,8 +7,8 @@
 
 <template name="slip">
   {{#with context}}
-    <div class="panel {{finished_class}} signoutslip" id="{{_id}}">
-      <div class="panel-heading">{{name}}'s permission slip<i class="mdi-navigation-expand-less pull-right expando clickable"></i><i class="mdi-navigation-expand-more pull-right expando clickable"></i></div>
+    <div class="panel {{#if slipfinished}}panel-success{{else}}panel-info{{/if}} signoutslip" id="{{_id}}">
+      <div class="panel-heading">{{name}}'s permission slip {{dates}}<i class="mdi-navigation-expand-less pull-right expando clickable"></i><i class="mdi-navigation-expand-more pull-right expando clickable"></i><span class="pull-right badge margin-right-1em hidden-xs" id="deansig"></span><span class="pull-right badge margin-right-1em hidden-xs" id="housesig"></span></div>
       <div class="panel-body">
         <form class="form-horizontal" id="slip">
           <fieldset>
@@ -31,7 +31,7 @@
                 <div class="row" style="margin-left: 1em;">
                   <div class="radio radio-primary">
                     <label class="col-md-3">
-                      <input name="formRadio" id="form_radiobutton" value="3" checked="" type="radio">
+                      <input name="formRadio" id="form_radiobutton" value="3" checked="" type="radio" required>
                       3<sup>rd</sup>
                     </label>
                     <label class="col-md-3">
@@ -65,7 +65,7 @@
 
 
             <div class="form-group">
-                <label for="leavedate" class="col-lg-2 control-label">Leave date</label>
+                <label for="leavedate" class="col-lg-2 control-label">Departure date</label>
                 <div class="col-lg-5">
                   <input class="form-control datepicker clickable-ovr" id="leavedate"  placeholder="date" type="text" required>
                 </div>
@@ -97,6 +97,13 @@
             </div>
 
             <div class="form-group">
+              <label for="slip_addr2" class="col-lg-2 control-label">Town</label>
+              <div class="col-lg-10">
+                <input class="form-control" id="slip_town" placeholder="town" type="text" required>
+              </div>
+            </div>
+
+            <div class="form-group">
               <label for="slip_state" class="col-lg-2 control-label">State / zip code</label>
               <div class="col-lg-6">
                 <input class="form-control" id="slip_state" placeholder="state" required>
@@ -115,9 +122,19 @@
             <div class="form-group">
               <label for="slip_tel" class="col-lg-2 control-label">Telephone</label>
               <div class="col-lg-10">
-                <input class="form-control" id="slip_tel" placeholder="tel. number" required>
+                <input class="form-control" id="slip_tel" placeholder="telephone number" required>
               </div>
             </div>
+
+            {{#if cansign}}
+            <div class="form-group">
+              <label class="col-lg-2 control-label">Signatures</label>
+              <div class="col-lg-10">
+                <a class="btn btn-default clickable btn-xs text-normal notbmargins" id="signasdean"></a>
+                <a class="btn btn-default clickable btn-xs text-normal notbmargins" id="signashouse"></a>
+              </div>
+            </div>
+            {{/if}}
 
             <div class="row">
               <div class="col-lg-2"></div>
