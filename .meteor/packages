@@ -14,3 +14,5 @@ accounts-ui
 sacha:spin
 fezvrasta:bootstrap-material-design
 cwohlman:pickadate
+numtel:mysql
+typ:accounts-ldap

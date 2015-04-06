@@ -1,3 +1,60 @@
 <template name="nf_export">
-  <p> export view </p>
+<div class="tools">
+	<p> jump to:
+	<a id="jt3" class="clickable">third form</a> /
+	<a id="jt4" class="clickable">fourth form</a> /
+	<a id="jt5" class="clickable">fifth form</a> /
+	<a id="jt6" class="clickable">sixth form</a>
+	</p>
+</div>
+
+<div class="section_header" id="form3">
+	<h2>third form</h2>
+</div>
+{{> nf_export_table form=3}}
+
+<div class="section_header" id="form4">
+	<h2>fourth form</h2>
+</div>
+{{> nf_export_table form=4}}
+
+
+<div class="section_header" id="form5">
+	<h2>fifth form</h2>
+</div>
+{{> nf_export_table form=5}}
+
+
+<div class="section_header" id="form6">
+	<h2>sixth form</h2>
+</div>
+{{> nf_export_table form=6}}
+</template>
+
+<template name="nf_export_table">
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Form</th>
+			<th>Dorm</th>
+			<th>Departure date</th>
+			<th>Return date</th>
+			<th>Slip status</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each slips}}
+		<tr class="clickable">
+			<td>{{name}}</td>
+			<td>{{form}}</td>
+			<td>{{resolveDorm}}</td>
+			<td>{{leave}}</td>
+			<td>{{return}}</td>
+			<td>{{slipStatus}}</td>
+		</tr>
+		{{/each}}
+	</tbody>
+</table>
+
 </template>

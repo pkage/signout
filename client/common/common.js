@@ -39,6 +39,7 @@ Template.slip.rendered = function() {
   if (this.data.expanded == false) {
     expid = this.data.context._id;
     $('#' + expid).find('.panel-body').hide();
+    $('#' + expid).find('.expando').toggleClass('hidden');
   }
   $('.datepicker').pickadate();$('.timepicker').pickatime();
   Meteor.setTimeout(function() {
@@ -82,6 +83,7 @@ Template.slip.helpers({
 Template.slip.events({
   'click .expando': function() {
     $('#' + this._id).find('.panel-body').slideToggle();
+    $('#' + this._id).find('.expando').toggleClass('hidden');
   },
   'submit #slip': function(ev, tm) {
     ev.preventDefault();

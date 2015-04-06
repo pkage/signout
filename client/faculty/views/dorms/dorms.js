@@ -14,7 +14,7 @@ Template.nf_dorms.helpers({
     return (Dorms.find({advisors: {$in: [email]}}).count() > 0);
   },
   'relevant_slips': function() {
-    return Slips.find({dorm: this._id, ready: {$ne: false}}, {sort: {leave: 1}});
+    return Slips.find({dorm: this._id, ready: {$ne: false}, 'return': {$gte: new Date() }}, {sort: {leave: 1}});
   },
   'has_relevant_slips': function() {
     return (Slips.find({dorm: this._id, ready: {$ne: false}}).count() > 0);
